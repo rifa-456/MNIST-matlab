@@ -1,0 +1,10 @@
+*.asv
+*.m~
+*.mex*
+*.slxc
+*.autosave
+
+data_raw/
+resources/
+
+*.mat
