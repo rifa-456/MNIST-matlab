@@ -5,7 +5,6 @@
 *.autosave
 
 data_raw/
-resources/
 .idea/
 
 *.mat

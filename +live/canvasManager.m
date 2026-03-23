@@ -25,9 +25,9 @@ classdef canvasManager < handle
                 brushRadius (1,1) double {mustBePositive} = 12
             end
 
-            obj.SizePx      = canvasSizePx;
+            obj.SizePx = canvasSizePx;
             obj.BrushRadius = brushRadius;
-            obj.Pixels      = zeros(canvasSizePx, canvasSizePx, 'single');
+            obj.Pixels = zeros(canvasSizePx, canvasSizePx, 'single');
 
             [obj.GridX, obj.GridY] = meshgrid(1:canvasSizePx, 1:canvasSizePx);
         end
@@ -38,6 +38,7 @@ classdef canvasManager < handle
 
         function img = getSnapshot(obj)
             img = imresize(obj.Pixels, [28 28]);
+            img = max(0, min(1, img));
             img = reshape(img, 28, 28, 1);
         end
 
