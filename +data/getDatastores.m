@@ -5,11 +5,11 @@ function [imdsTrain, imdsValidation] = getDatastores(dataDir)
         error('data:notFound', ...
             'Training data not found at %s. Run utils.downloadMNIST() first.', trainDir);
     end
-
+    
     imds = imageDatastore(trainDir, ...
         'IncludeSubfolders', true, ...
-        'LabelSource',       'foldernames');
-
+        'LabelSource', 'foldernames');
+    
     [imdsTrain, imdsValidation] = splitEachLabel(imds, 0.8, 'randomized');
     
     imdsTrain.ReadFcn = @(path) preprocessImage(path);
@@ -18,7 +18,7 @@ function [imdsTrain, imdsValidation] = getDatastores(dataDir)
     fprintf('Train samples: %d | Validation samples: %d\n', ...
         numel(imdsTrain.Files), numel(imdsValidation.Files));
 end
-
+    
 function img = preprocessImage(imagePath)
     img = imread(imagePath);
     img = im2single(img);

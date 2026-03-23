@@ -8,17 +8,17 @@ testDir  = fullfile(params.DataDir, 'test');
 
 imdsTest = imageDatastore(testDir, ...
     'IncludeSubfolders', true, ...
-    'LabelSource',       'foldernames');
+    'LabelSource', 'foldernames');
 imdsTest.ReadFcn = @(p) im2single(imresize(imread(p), [28 28]));
 
 scores = minibatchpredict(net, imdsTest, ...
     'ExecutionEnvironment', params.ExecutionEnvironment);
 
-classNames     = categories(imdsTest.Labels);
+classNames = categories(imdsTest.Labels);
 predictedLabels = scores2label(scores, classNames);
 
 trueLabels = imdsTest.Labels;
-accuracy   = mean(predictedLabels == trueLabels) * 100;
+accuracy = mean(predictedLabels == trueLabels) * 100;
 fprintf('Test Accuracy: %.2f%%\n', accuracy);
 
 figure;

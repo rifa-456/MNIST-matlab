@@ -1,13 +1,13 @@
 classdef appController < handle
-
+    
     properties (Access = private)
         Canvas live.canvasManager
         Inference live.inferenceEngine
         Display live.displayPanel
     end
-
+    
     methods (Access = public)
-
+    
         function obj = appController()
             modelPath = fullfile(pwd, 'trained_mnist_model.mat');
             obj.Inference = live.inferenceEngine(modelPath);
