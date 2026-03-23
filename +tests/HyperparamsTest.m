@@ -10,7 +10,7 @@ classdef HyperparamsTest < matlab.unittest.TestCase
         end
     end
 
-    methods (Test)
+    methods (Test, TestTags = {'unit', 'config'})
 
         function hasMaxEpochs(tc)
             tc.verifyTrue(isfield(tc.Params, 'MaxEpochs'));
@@ -39,15 +39,13 @@ classdef HyperparamsTest < matlab.unittest.TestCase
         function maxEpochsIsPositiveInteger(tc)
             v = tc.Params.MaxEpochs;
             tc.verifyGreaterThan(v, 0);
-            tc.verifyEqual(v, floor(v), ...
-                'MaxEpochs must be an integer value.');
+            tc.verifyEqual(v, floor(v), 'MaxEpochs must be an integer value.');
         end
 
         function miniBatchSizeIsPositiveInteger(tc)
             v = tc.Params.MiniBatchSize;
             tc.verifyGreaterThan(v, 0);
-            tc.verifyEqual(v, floor(v), ...
-                'MiniBatchSize must be an integer value.');
+            tc.verifyEqual(v, floor(v), 'MiniBatchSize must be an integer value.');
         end
 
         function initialLearnRateIsPositive(tc)

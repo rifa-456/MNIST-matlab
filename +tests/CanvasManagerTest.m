@@ -16,7 +16,7 @@ classdef CanvasManagerTest < matlab.unittest.TestCase
         end
     end
 
-    methods (Test)
+    methods (Test, TestTags = {'unit', 'canvas'})
 
         function sizePxMatchesConstructorArg(tc)
             tc.verifyEqual(tc.Canvas.SizePx, 280);
@@ -80,31 +80,25 @@ classdef CanvasManagerTest < matlab.unittest.TestCase
         function canvasUpdatedFiresOnBrushStroke(tc)
             counter = tests.EventCounter();
             addlistener(tc.Canvas, 'CanvasUpdated', @counter.increment);
-
             tc.Canvas.startStroke();
             tc.Canvas.applyBrushAt(140, 140);
-
             tc.verifyEqual(counter.Count, 1);
         end
 
         function canvasUpdatedFiresOnClear(tc)
             counter = tests.EventCounter();
             addlistener(tc.Canvas, 'CanvasUpdated', @counter.increment);
-
             tc.Canvas.clear();
-
             tc.verifyEqual(counter.Count, 1);
         end
 
         function canvasUpdatedFiresOncePerApplyBrushCall(tc)
             counter = tests.EventCounter();
             addlistener(tc.Canvas, 'CanvasUpdated', @counter.increment);
-
             tc.Canvas.startStroke();
             tc.Canvas.applyBrushAt(50,  50);
             tc.Canvas.applyBrushAt(100, 100);
             tc.Canvas.applyBrushAt(150, 150);
-
             tc.verifyEqual(counter.Count, 3);
         end
 

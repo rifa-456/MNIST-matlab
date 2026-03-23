@@ -28,7 +28,7 @@ classdef AppControllerTest < matlab.mock.TestCase
         end
     end
 
-    methods (Test)
+    methods (Test, TestTags = {'unit', 'controller'})
 
         function predictNotCalledBeforeAnyDraw(tc)
             import matlab.unittest.constraints.IsAnything
@@ -57,7 +57,6 @@ classdef AppControllerTest < matlab.mock.TestCase
             tc.Canvas.applyBrushAt(50,  50);
             tc.Canvas.applyBrushAt(100, 100);
             tc.Canvas.applyBrushAt(150, 150);
-
             tc.verifyThat( ...
                 tc.Behavior.predict(IsAnything()), ...
                 matlab.mock.constraints.WasCalled('WithCount', 3));

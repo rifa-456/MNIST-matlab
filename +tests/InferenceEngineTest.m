@@ -2,7 +2,7 @@ classdef InferenceEngineTest < matlab.unittest.TestCase
 
     properties
         ModelPath (1,1) string
-        Engine live.inferenceEngine
+        Engine    live.inferenceEngine
     end
 
     methods (TestClassSetup)
@@ -32,7 +32,7 @@ classdef InferenceEngineTest < matlab.unittest.TestCase
         end
     end
 
-    methods (Test)
+    methods (Test, TestTags = {'unit', 'inference'})
 
         function outputIs1x10(tc)
             scores = tc.Engine.predict(zeros(28, 28, 1, 'single'));
